@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/Form.css';
+import Error from './Error';
 
 const Form = ({ addItem }) => {
   const [input, setInput] = useState('');
   const [priority, setPriority] = useState('Medium');
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -17,14 +19,21 @@ const Form = ({ addItem }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newItem = {
-      id: uuidv4(),
-      title: input,
-      priority: priority,
-      isDone: false
+    if(input.length === 0) {
+      setErrorMsg('Field must not be empty');
+      setTimeout(() => {
+        setErrorMsg('');
+      }, 4000);
+    } else {
+      const newItem = {
+        id: uuidv4(),
+        title: input,
+        priority: priority,
+        isDone: false
+      }
+      addItem(newItem);
+      setInput('');
     }
-    addItem(newItem);
-    setInput('');
   }
 
   return (
@@ -69,6 +78,9 @@ const Form = ({ addItem }) => {
             onChange={handlePriorityChange}
           /> Low
         </label>
+      </div>
+      <div className="error-container">
+        {errorMsg && <Error errorMsg={errorMsg} />}
       </div>
     </form>
   );

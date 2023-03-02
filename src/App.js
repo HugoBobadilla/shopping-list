@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Form from './components/Form';
 import List from './components/List';
 
 function App() {
   const [itemsList, setItemsList] = useState([]);
+
+  useEffect(() => {
+    if(itemsList.length !== 0) {
+      localStorage.setItem('shoppingList', JSON.stringify(itemsList));
+    }
+  }, [itemsList]);
 
   const addItem = (item) => {
     setItemsList([item, ...itemsList]);
