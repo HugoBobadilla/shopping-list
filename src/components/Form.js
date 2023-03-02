@@ -1,11 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/Form.css';
 
-const Form = () => {
+const Form = ({ addItem }) => {
+  const [input, setInput] = useState('');
+  const [priority, setPriority] = useState('Medium');
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
+  }
+
+  const handlePriorityChange = (e) => {
+    setPriority(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newItem = {
+      id: uuidv4(),
+      title: input,
+      priority: priority,
+      isDone: false
+    }
+    addItem(newItem);
+    setInput('');
+  }
+
   return (
-    <form className='form'>
-      <input type='text' className='form-input' />
-      <button type='submit' className='btn-submit'>Add</button>
+    <form onSubmit={handleSubmit} className='form'>
+      <div className='input-container'>
+        <input 
+          type='text' 
+          className='form-input'
+          onChange={handleInput}
+          value={input}
+        />
+        <button type='submit' className='btn-submit'>Add</button>
+      </div>
+      <div className='input-container'>
+        <label htmlFor="high">
+          <input 
+            type='radio' 
+            name='priority' 
+            id='high' 
+            value='High' 
+            checked={priority === "High"}
+            onChange={handlePriorityChange}
+          /> High
+        </label>
+        <label htmlFor="medium">
+          <input 
+            type='radio' 
+            name='priority' 
+            id='medium' 
+            value='Medium'
+            checked={priority === "Medium"}
+            onChange={handlePriorityChange}
+          /> Medium
+        </label>
+        <label htmlFor="low">
+          <input 
+            type='radio' 
+            name='priority' 
+            id='low' 
+            value='Low'
+            checked={priority === "Low"}
+            onChange={handlePriorityChange}
+          /> Low
+        </label>
+      </div>
     </form>
   );
 }

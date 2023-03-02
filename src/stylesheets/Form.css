@@ -1,8 +1,21 @@
 .form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 20px;
   width: 100%;
+}
+
+.input-container{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+label {
+  color: #fff;
+  margin-left: 5px;
 }
 
 .form-input {
