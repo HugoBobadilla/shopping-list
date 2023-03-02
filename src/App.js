@@ -4,12 +4,14 @@ import Form from './components/Form';
 import List from './components/List';
 
 function App() {
-  const [itemsList, setItemsList] = useState([]);
+  const [itemsList, setItemsList] = useState(() => {
+    const savedItems = localStorage.getItem('shoppingList');
+    const parsedItems = JSON.parse(savedItems);
+    return parsedItems || [];
+  });
 
   useEffect(() => {
-    if(itemsList.length !== 0) {
-      localStorage.setItem('shoppingList', JSON.stringify(itemsList));
-    }
+    localStorage.setItem('shoppingList', JSON.stringify(itemsList));
   }, [itemsList]);
 
   const addItem = (item) => {

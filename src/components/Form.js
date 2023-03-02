@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/Form.css';
 import Error from './Error';
 
-const Form = ({ addItem }) => {
+const Form = ({ addItem, editMode }) => {
   const [input, setInput] = useState('');
   const [priority, setPriority] = useState('Medium');
   const [errorMsg, setErrorMsg] = useState(null);
@@ -45,7 +45,7 @@ const Form = ({ addItem }) => {
           onChange={handleInput}
           value={input}
         />
-        <button type='submit' className='btn-submit'>Add</button>
+        <button type='submit' className='btn-submit'>{editMode ? 'Edit' : 'Add'}</button>
       </div>
       <div className='input-container'>
         <label htmlFor="high">

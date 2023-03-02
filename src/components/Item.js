@@ -12,7 +12,7 @@ const Item = ({ id, item, priority, isDone, setDone, removeItem }) => {
           <p className='item-priority'>Priority: <span>{priority}</span></p>
         </div>
         <div className="icons-container">
-          <TiEdit className='icon' />
+          <TiEdit className='icon'/>
           <TiDelete className='icon' onClick={(id) => removeItem(id)} />
         </div>
       </div>
