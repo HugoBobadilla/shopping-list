@@ -10,6 +10,21 @@ function App() {
     setItemsList([item, ...itemsList]);
   }
 
+  const setDone = (id) => {
+    const itemsListUpdated = itemsList.map(item => {
+      if(item.id === id) {
+        item.isDone = !item.isDone
+      }
+      return item;
+    });
+    setItemsList(itemsListUpdated);
+  }
+
+  const removeItem = (id) => {
+    const itemsListUpdated = itemsList.filter(item => item.id !== id);
+    setItemsList(itemsListUpdated);
+  }
+
   return (
     <div className='App'>
       <div className='title-container'>
@@ -18,7 +33,11 @@ function App() {
       </div>
       <div className='shopping-list-container'>
         <Form addItem={addItem} />
-        <List items={itemsList} />
+        <List 
+          setDone={setDone} 
+          removeItem={removeItem}
+          items={itemsList}
+        />
       </div>
     </div>
   );
