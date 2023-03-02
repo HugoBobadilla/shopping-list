@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.form-input {
+  border: 1px solid lightgray;
+  border-radius: 5px 0px 0px 5px;
+  width: 70%;
+  height: 35px;
+  font-size: 18px;
+  color: #36454F;
+  padding: 5px;
+}
+
+.form-input:focus {
+  outline: 1px solid gray;
+}
+
+.btn-submit {
+  border: none;
+  background-color: #00CED1;
+  color: #fff;
+  cursor: pointer;
+  height: 35px;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 0px 5px 5px 0px;
+}
