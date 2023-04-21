@@ -2,4 +2,6 @@
 
 Site for listing thigs you have to buy.
 
+This project was build with React Js.
+
 Live site at https://hugobobadilla.github.io/shopping-list/
